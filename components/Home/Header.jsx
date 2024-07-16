@@ -52,11 +52,12 @@ export default function header() {
         borderRadius:8,
         marginVertical:10,
       }}>
-      <AntDesign name="search1" size={24} color={Colors.primary} />
+      <AntDesign name="search1" size={24} color={Colors.primary} style={{marginRight:5}} />
       <TextInput placeholder='Search...' 
         style={{
             fontFamily:'outfit',
             fontSize:15,
+            width:260
         }}
       ></TextInput>
       </View>
