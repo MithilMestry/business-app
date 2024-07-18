@@ -2,21 +2,21 @@ import { View, Text, FlatList } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { Colors } from '../../constants/Colors'
 import { collection, doc, getDocs, limit, query } from 'firebase/firestore'
-import { db } from '../../config/Config'
+import { db } from '../../config/FirebaseConfig'
 import PopularBusinessCrad from './PopularBusinessCrad'
 
 export default function PopularBusiness() {
 
-  const [BusinessList,setBusinessList]=useState([]);
+  const [businessList,setBusinessList]=useState([]);
   useEffect (()=>{
     GetBusinessList();
   },[])
 
     const GetBusinessList=async()=>{
-      setBusinessList([])
+      setBusinessList([]);
       const q=query(collection(db,'BusinessList'), limit(10));
 
-      const querySnapshot=await getDocs (q);
+      const querySnapshot=await getDocs(q);
 
       querySnapshot.forEach((doc)=>{
         console.log(doc.data());
@@ -41,8 +41,9 @@ export default function PopularBusiness() {
     </View>
 
     <FlatList 
-    data={BusinessList}
+    data={businessList}
     horizontal={true}
+    showsHorizontalScrollIndicator={false}
     renderItem={({item,index})=>(
       <PopularBusinessCrad
       key={index}
