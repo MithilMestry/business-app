@@ -1,4 +1,4 @@
-import { View, Text, Image, TouchableOpacity, Linking } from 'react-native'
+import { View, Text, Image, TouchableOpacity, Linking, Share } from 'react-native'
 import React from 'react'
 import { FlatList } from 'react-native'
 
@@ -31,6 +31,16 @@ export default function ActionButton({business}) {
             url: business?.website 
         },
     ]
+
+    const onPressHandle=(item)=>{
+        if(item.name=='Share'){ 
+            Share.share({
+                message:business?.name+"\n Address: "+business.address+"\n Find more about details on Business-Book"
+            })
+            return ;
+        }
+        Linking.openURL(item.url);
+    }
   return (
     <View style={{
         backgroundColor:'#fff',
@@ -46,7 +56,7 @@ export default function ActionButton({business}) {
         columnWrapperStyle={{justifyContent:'space-between'}}
         renderItem={({item,index})=>(
             <TouchableOpacity key={index}
-            onPress={()=>Linking.openURL(item.url)}
+            onPress={()=>onPressHandle(item)}
             >
                 <Image source={item?.icon}
                 style={{

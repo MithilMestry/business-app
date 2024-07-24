@@ -19,8 +19,8 @@ export default function TabLayout() {
      }}
      />
 
-     <Tabs.Screen name='expolre' options={{
-      tabBarLabel:'Expolre',
+     <Tabs.Screen name='explore' options={{
+      tabBarLabel:'Explore',
       tabBarIcon:({color})=><AntDesign name="search1" size={24} color={color} />
      }} />
 

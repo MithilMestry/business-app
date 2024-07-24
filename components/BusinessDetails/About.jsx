@@ -5,7 +5,7 @@ export default function About({business}) {
   return (
     <View style={{
         backgroundColor:'#fff',
-        padding:10,
+        padding:20,
     }}>
       <Text style={{
         fontFamily:'outfit-bold',

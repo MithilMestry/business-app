@@ -7,7 +7,7 @@ import {db} from './../../config/FirebaseConfig'
 import { useRouter } from 'expo-router'
 import CategoryItems from './CategoryItems'
 
-export default function Category() {
+export default function Category({explore=false,onCategorySelect}) {
     const router=useRouter();
 
     const [categoryList,setCategoryList]=useState([]);
@@ -27,9 +27,17 @@ export default function Category() {
         })
     } 
 
+    const onCategoryPressHandle=(item)=>{
+      if(!explore){
+        router.push('/businesslist/'+item.name)
+      }else{
+        onCategorySelect(item.name)
+      }
+    }
+
   return (
     <View>
-        <View style={{padding:20, display:'flex', flexDirection:'row', justifyContent:'space-between'}}>
+      {!explore&& <View style={{padding:20, display:'flex', flexDirection:'row', justifyContent:'space-between'}}>
       <Text style={{
         fontSize:20,
         fontFamily:'outfit-bold',
@@ -40,7 +48,7 @@ export default function Category() {
                 color:Colors.primary,
                 fontFamily:'outfit'
             }}>View All</Text> 
-    </View>
+    </View>}
 
     <FlatList 
       data={categoryList}
@@ -52,7 +60,7 @@ export default function Category() {
       renderItem={({item,index})=>(
        <CategoryItems category={item} 
        key={index} 
-       onCategoryPress={(category)=>router.push('/businesslist/'+item.name)}/>
+       onCategoryPress={(category)=>onCategoryPressHandle(item)}/>
       )}
       />
 
