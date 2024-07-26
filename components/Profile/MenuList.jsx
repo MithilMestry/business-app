@@ -1,33 +1,57 @@
-import { View, Text, FlatList, Image } from 'react-native'
-import React from 'react'
+import { View, Text, FlatList, Image, TouchableOpacity, Share } from 'react-native'
+import React, { useState } from 'react'
 import {Colors} from './../../constants/Colors'
+import { useRouter } from 'expo-router'
+import { useAuth } from '@clerk/clerk-expo';
 
 export default function MenuList() {
+
+  const router=useRouter();
+  const {signOut}=useAuth();
+
+  onMenuClick=(item)=>{
+    if(item.path=='logout')
+      {
+        signOut();
+        return;
+      }
+      if(item.path=='share')
+      {
+        Share.share
+        (
+          {
+            message:'Download The App '
+          }
+        )
+        return;
+      }
+    router.push(item.path)
+  }
 
     const menulist=[
         {
             id:1,
             name:'Add Business',
             icon:require('./../../assets/images/call.png'),
-            path:'',
+            path:'/business/add-business',
         },
         {
             id:2,
             name:'My Business',
             icon:require('./../../assets/images/call.png'),
-            path:'',
+            path:'/business/my-business',
         },
         {
             id:3,
             name:'Share App',
             icon:require('./../../assets/images/call.png'),
-            path:'',
+            path:'share',
         },
         {
             id:4,
             name:'Logout',
             icon:require('./../../assets/images/call.png'),
-            path:'',
+            path:'logout',
         },
     ]
 
@@ -38,7 +62,9 @@ export default function MenuList() {
       <FlatList 
         data={menulist}
         renderItem={({item,index})=>(
-            <View style={{
+            <TouchableOpacity
+            onPress={()=>onMenuClick(item)}
+            style={{
                 display:'flex',
                 flexDirection:'row',
                 alignItems:'center',
@@ -55,7 +81,7 @@ export default function MenuList() {
                 fontFamily:'outfit',
                 fontSize:20
             }}>{item.name}</Text>
-          </View>
+          </TouchableOpacity>
         )}
           
       />

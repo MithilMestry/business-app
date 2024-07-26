@@ -1,12 +1,38 @@
-import { View, Text, Image, TouchableOpacity } from 'react-native';
+import { View, Text, Image, TouchableOpacity, Alert, ToastAndroid } from 'react-native';
 import React from 'react';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
+import { deleteDoc, doc } from 'firebase/firestore';
+import { db } from './../../config/FirebaseConfig';
+import { useUser } from '@clerk/clerk-expo';
 
 export default function Intro({ business }) {
 
     const router=useRouter();
-  // Check if business is defined and has an imageUrl property
+
+    const user=useUser();
+
+    const OnDelete=()=>{
+      Alert.alert('Delete Business ?','Do You Really Want to Delete This Business Post',[
+        {
+          text:'Cancel',
+          style:'cancel',
+        },
+        {
+          text:'Delete',
+          style:'destructive',
+          onPress:()=>deleteBusiness()
+        },
+      ]);
+    }
+
+    const deleteBusiness=async()=>{
+      console.log("Business Deleted...")
+      await deleteDoc(doc(db,'BusinessList',business?.id));
+      router.back();
+      ToastAndroid.show('Business Deleted !',ToastAndroid.BOTTOM);
+    }
+
   if (!business || !business.imageUrl) {
     return (
       <View>
@@ -39,13 +65,21 @@ export default function Intro({ business }) {
           height: 310,
         }}
       />
+
+      <View style={{
+        display:'flex',
+        flexDirection:'row',
+        backgroundColor:'#fff'
+      }}>
       <View style={{
             padding:20,
             marginTop:-20,
             backgroundColor:'#fff',
+            display:'flex',
+            flexDirection:'row',
+            justifyContent:'space-between',
             borderTopRightRadius:25,
             borderTopLeftRadius:25,
-
       }}>
       <Text style={{
         fontFamily:'outfit-bold',
@@ -57,7 +91,13 @@ export default function Intro({ business }) {
         fontSize:16,
       }}>{business.address}</Text>
       </View>
-      
+
+
+     {user?.primaryemailAddress?.emailAddress==business?.userEmail&& <TouchableOpacity onPress={()=>OnDelete()}>
+    <Ionicons name="trash" size={24} color="red" />
+    </TouchableOpacity>}
+    
+    </View>
     </View>
   );
 }
