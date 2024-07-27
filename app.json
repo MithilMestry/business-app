@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "demoapp",
-    "slug": "demoapp",
+    "name": "BizApp",
+    "slug": "BizApp",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -19,7 +19,11 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "permissions": [
+        "android.permission.RECORD_AUDIO"
+      ],
+      "package": "com.mithil1121.demoapp"
     },
     "web": {
       "bundler": "metro",
@@ -37,6 +41,14 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "227412f3-9294-4fbf-b2b4-a17676925e1b"
+      }
     }
   }
 }

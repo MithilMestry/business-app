@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import {Colors} from './../../constants/Colors'
 import { useRouter } from 'expo-router'
 import { useAuth } from '@clerk/clerk-expo';
+import { MaterialIcons } from '@expo/vector-icons';
 
 export default function MenuList() {
 
@@ -20,7 +21,7 @@ export default function MenuList() {
         Share.share
         (
           {
-            message:'Download The App '
+            message:'Download The App at https://www.youtube.com/ '
           }
         )
         return;
@@ -32,27 +33,33 @@ export default function MenuList() {
         {
             id:1,
             name:'Add Business',
-            icon:require('./../../assets/images/call.png'),
+            icon:require('./../../assets/images/store.png'),
             path:'/business/add-business',
         },
         {
             id:2,
             name:'My Business',
-            icon:require('./../../assets/images/call.png'),
+            icon:require('./../../assets/images/my-business.png'),
             path:'/business/my-business',
         },
         {
             id:3,
-            name:'Share App',
-            icon:require('./../../assets/images/call.png'),
-            path:'share',
+            name:'Favourites',
+            icon:require('./../../assets/images/love.png'),
+            path:'/business/FavoritesScreen',
         },
         {
             id:4,
-            name:'Logout',
-            icon:require('./../../assets/images/call.png'),
-            path:'logout',
+            name:'Share App',
+            icon:require('./../../assets/images/share.png'),
+            path:'share',
         },
+        {
+          id:5,
+          name:'Logout',
+          icon:require('./../../assets/images/logout.png'),
+          path:'logout',
+      },
     ]
 
   return (
@@ -68,13 +75,13 @@ export default function MenuList() {
                 display:'flex',
                 flexDirection:'row',
                 alignItems:'center',
-                gap:8,
-                padding:10
+                gap:15,
+                padding:15
             }}>
             <Image source={item.icon} 
             style={{
-                width:50,
-                height:50,
+                width:40,
+                height:40,
             }}
             />
             <Text style={{

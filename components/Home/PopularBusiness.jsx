@@ -8,11 +8,13 @@ import PopularBusinessCrad from './PopularBusinessCrad'
 export default function PopularBusiness() {
 
   const [businessList,setBusinessList]=useState([]);
+  const [loading,setLoading]=useState(false);
   useEffect (()=>{
     GetBusinessList();
   },[])
 
     const GetBusinessList=async()=>{
+      setLoading(true);
       setBusinessList([]);
       const q=query(collection(db,'BusinessList'), limit(10));
 
@@ -23,6 +25,7 @@ export default function PopularBusiness() {
 
         setBusinessList(prev=>[...prev,{id:doc.id, ...doc.data()}])
       })
+      setLoading(false);
     }
 
   return (
@@ -42,6 +45,8 @@ export default function PopularBusiness() {
 
     <FlatList 
     data={businessList}
+    onRefresh={GetBusinessList}
+    refreshing={loading}
     horizontal={true}
     showsHorizontalScrollIndicator={false}
     renderItem={({item,index})=>(

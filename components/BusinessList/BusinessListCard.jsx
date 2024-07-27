@@ -19,7 +19,7 @@ export default function BusinessListCard({ business }) {
         alignItems:'center'
     }}  onPress={()=> router.push('/businessdetail/'+business.id)} >
       <Image
-        source={{ uri: business.imageUrl }} // Placeholder URL if imageUrl is missing
+        source={{ uri: business.imageUrl }} 
         style={{
           width: 100,
           height: 100,
@@ -41,9 +41,6 @@ export default function BusinessListCard({ business }) {
           color: Colors.gray
         }}>{business.address}</Text>
 
-        {/* <Text style={{
-          fontFamily:'outfit'
-        }}>{business.contact}</Text> */}
 
         <View style={{display:'flex', flexDirection:'row', gap:8,marginTop:8 }}>
             <Image source={require('./../../assets/images/star.png')}
@@ -53,7 +50,6 @@ export default function BusinessListCard({ business }) {
             }}/>
             <Text style={{fontFamily:'outfit',
                 color:'black', fontSize:15,
-                // marginTop:2
             }}>4.5</Text>
         </View>
       </View>

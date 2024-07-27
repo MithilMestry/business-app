@@ -1,4 +1,4 @@
-import { View, Text, Image, TouchableOpacity, TextInput, ToastAndroid, ActivityIndicator } from 'react-native'
+import { View, Text, Image, TouchableOpacity, TextInput, ToastAndroid, ActivityIndicator,ScrollView } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { useNavigation } from 'expo-router'
 import * as ImagePicker from 'expo-image-picker';
@@ -109,8 +109,8 @@ export default function AddBusiness() {
     
 
   return (
-    <View>
-      <Text>add-business</Text>
+    <ScrollView>
+      {/* <Text>add-business</Text> */}
 
       <TouchableOpacity style={{
         marginTop:25,
@@ -121,6 +121,7 @@ export default function AddBusiness() {
       style={{
         width:100,
         height:100,
+        marginLeft:'35%'
       }}
       /> :
       <Image source={{uri:image}}
@@ -129,7 +130,16 @@ export default function AddBusiness() {
         height:100,
         borderRadius:15,
       }}
-      />}
+      />
+    }
+    <Text style={{
+      fontFamily:'outfit',
+      fontSize:12,
+      textAlign:'center',
+      color:Colors.primary,
+      marginTop:8
+    }}>(Add Photo of your Shop)</Text>
+
       </TouchableOpacity>
 
       <View>
@@ -144,7 +154,7 @@ export default function AddBusiness() {
             backgroundColor:'#fff',
             marginTop:15,
             borderColor:Colors.gray,
-            width:330,
+            marginRight:15,
             marginLeft:15,
             fontFamily:'outfit'
           }}
@@ -160,7 +170,7 @@ export default function AddBusiness() {
             backgroundColor:'#fff',
             marginTop:15,
             borderColor:Colors.gray,
-            width:330,
+            marginRight:15,
             marginLeft:15,
             fontFamily:'outfit'
           }}
@@ -176,7 +186,7 @@ export default function AddBusiness() {
             backgroundColor:'#fff',
             marginTop:15,
             borderColor:Colors.gray,
-            width:330,
+            marginRight:15,
             marginLeft:15,
             fontFamily:'outfit'
           }}
@@ -192,7 +202,7 @@ export default function AddBusiness() {
             backgroundColor:'#fff',
             marginTop:15,
             borderColor:Colors.gray,
-            width:330,
+            marginRight:15,
             marginLeft:15,
             fontFamily:'outfit'
           }}
@@ -210,7 +220,7 @@ export default function AddBusiness() {
             backgroundColor:'#fff',
             marginTop:15,
             borderColor:Colors.gray,
-            width:330,
+            marginRight:15,
             marginLeft:15,
             fontFamily:'outfit',
             height:100
@@ -227,7 +237,7 @@ export default function AddBusiness() {
             backgroundColor:'#fff',
             marginTop:15,
             borderColor:Colors.gray,
-            width:330,
+            marginRight:15,
             marginLeft:15,
             fontFamily:'outfit',
             // height:100
@@ -245,8 +255,8 @@ export default function AddBusiness() {
         backgroundColor:Colors.primary,
         borderRadius:5,
         marginTop:40,
-        width:330,
         marginLeft:15,
+        marginRight:15,
       }}
       onPress={()=>AddNewBusiness()}
       >
@@ -264,6 +274,12 @@ export default function AddBusiness() {
         }}>Submit</Text>}
       </TouchableOpacity>
 
-    </View>
+      <View style={{
+        height:50
+      }}>
+
+      </View>
+
+    </ScrollView>
   )
 }
