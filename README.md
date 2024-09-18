@@ -1,6 +1,7 @@
 # Welcome to your Expo app 👋
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+You can download the app from Amazon Appstore (https://www.amazon.com/dp/B0DC4RL7DZ/ref=apps_sf_sta) 
 
 ## Get started
 
