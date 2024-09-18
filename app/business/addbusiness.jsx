@@ -4,7 +4,7 @@ import { useNavigation } from 'expo-router'
 import * as ImagePicker from 'expo-image-picker';
 import { Colors } from '../../constants/Colors';
 import RNPickerSelect from 'react-native-picker-select';
-import {db, storage} from './../../config/FirebaseConfig';
+import {db, storage} from '../../config/FirebaseConfig';
 import { collection, query, getDocs, setDoc, doc } from 'firebase/firestore';
 import { uploadBytes,ref, getDownloadURL } from 'firebase/storage';
 import { useUser } from '@clerk/clerk-expo';
@@ -34,7 +34,7 @@ export default function AddBusiness() {
           quality: 1,
         });
         setImage(result?.assets[0].uri);
-        console.log(result);
+        // console.log(result);
       }
 
       useEffect(()=>{
@@ -51,7 +51,7 @@ export default function AddBusiness() {
         const snapShot=await getDocs(q);
 
         snapShot.forEach((doc)=>{
-          console.log(doc.data())
+          // console.log(doc.data())
           setCategoryList(prev=>[...prev,{
             label:(doc.data()).name,
             value:(doc.data()).name
@@ -80,10 +80,10 @@ export default function AddBusiness() {
     
             const imageRef = ref(storage, `business-book/${fileName}`);
             uploadBytes(imageRef, blob).then((snapShot) => {
-                console.log("File uploaded");
+                // console.log("File uploaded");
             }).then(resp=>{
               getDownloadURL(imageRef).then(async(downloadURL)=>{
-                console.log(downloadURL);
+                // console.log(downloadURL);
                 saveBusinessDetail(downloadURL)
               })
             })
